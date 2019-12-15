@@ -39,3 +39,6 @@ class ToDoList:
     def get_item(self, item_id: int) -> ITEM:
         item = filter(lambda x: x['id'] == item_id, self.todo)
         return list(item)[0]
+
+    def filter_tasks(self, status: StatusOptions) -> List[ITEM]:
+        return list(filter(lambda x: x['status'] == status, self.todo))

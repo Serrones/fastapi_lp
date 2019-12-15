@@ -1,4 +1,4 @@
-from data import ToDoList
+from data import ToDoList, StatusOptions
 from models import ItemModel, ItemResponseModel
 
 from fastapi import FastAPI
@@ -18,10 +18,13 @@ def hello_world():
     return{'hello': 'world'}
 
 @app.get('/list', response_model=List[ItemResponseModel])
-def list_todo():
+def list_todo(status: Optional[StatusOptions]= None):
     """
     View returns todo list
     """
+    if status is not None:
+        return todo_list.filter_tasks(status)
+
     return todo_list.get_all()
 
 
