@@ -7,10 +7,12 @@ class StatusOptions(str, Enum):
     doing = "doing"
     done = "done"
 
-ITEM = Dict[str,Union[int,str, StatusOptions]]
+
+ITEM = Dict[str, Union[int, str, StatusOptions]]
+
 
 class ToDoList:
-    todo: List[Dict[str, ITEM]] = [    
+    todo: List[ITEM] = [
         {
             'id': 1,
             'title': 'FastApi',
@@ -26,11 +28,11 @@ class ToDoList:
     ]
 
     id_now = 2
-    
+
     def get_all(self):
         return self.todo
-    
-    def insert_item(self, item:Dict[str, Any])-> Dict[str, Any]:
+
+    def insert_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
         self.id_now += 1
         item['id'] = self.id_now
         self.todo.append(item)

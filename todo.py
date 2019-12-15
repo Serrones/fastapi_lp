@@ -1,6 +1,6 @@
 from data import ToDoList, StatusOptions
 from models import ItemModel, ItemResponseModel
-from typing import List, Dict, Any, Optional
+from typing import List, Optional
 
 from fastapi import APIRouter
 
@@ -10,7 +10,7 @@ todo_list = ToDoList()
 
 
 @router.get('/', response_model=List[ItemResponseModel])
-def list_todo(status: Optional[StatusOptions]= None):
+def list_todo(status: Optional[StatusOptions] = None):
     """
     View returns todo list
     """
@@ -29,7 +29,7 @@ def insert_todo(item: ItemModel):
 
 
 @router.get('/{item_id}', response_model=ItemResponseModel)
-def get_item(item_id:int):
+def get_item(item_id: int):
     """
     View that gets an specific item by id
     """
