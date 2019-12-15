@@ -22,4 +22,12 @@ def list_todo():
     """
     View returns todo list
     """
-    return todo_list.get_all()   
+    return todo_list.get_all()
+
+
+@app.post('/list', response_model=ItemModel, status_code=201)
+def insert_todo(item: ItemModel):
+    """
+    View that inserts an item in todo list
+    """
+    return todo_list.insert_item(item.dict())

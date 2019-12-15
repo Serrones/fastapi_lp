@@ -16,8 +16,13 @@ class ToDoList:
         }
     ]
 
-    id_now = 3
+    id_now = 2
     
     def get_all(self):
         return self.todo
     
+    def insert_item(self, item:Dict[str, Any])-> Dict[str, Any]:
+        self.id_now += 1
+        item['id'] = self.id_now
+        self.todo.append(item)
+        return item
