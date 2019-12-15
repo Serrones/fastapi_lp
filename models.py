@@ -8,3 +8,7 @@ class ItemModel(BaseModel):
     title: str
     description: str
     status: Optional[StatusOptions]
+
+
+class ItemResponseModel(ItemModel):
+    id: int
