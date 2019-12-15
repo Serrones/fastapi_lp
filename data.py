@@ -1,4 +1,10 @@
 from typing import List, Dict, Any
+from enum import Enum
+
+class StatusOptions(str, Enum):
+    todo = "todo"
+    doing = "doing"
+    done = "done"
 
 class ToDoList:
     todo: List[Dict[str, Any]] = [    
@@ -6,13 +12,13 @@ class ToDoList:
             'id': 1,
             'title': 'FastApi',
             'description': 'Explore FastApi application',
-            'status': 'doing'
+            'status': StatusOptions.doing
         },
         {
             'id': 2,
             'title': 'AIOHTTP',
             'description': 'Explore Async concepts with AIOHTTP',
-            'status': 'to do'
+            'status': StatusOptions.todo
         }
     ]
 
