@@ -31,3 +31,11 @@ def insert_todo(item: ItemModel):
     View that inserts an item in todo list
     """
     return todo_list.insert_item(item.dict())
+
+
+@app.get('/list/{item_id}', response_model=ItemResponseModel)
+def get_item(item_id:int):
+    """
+    View that gets an specific item by id
+    """
+    return todo_list.get_item(item_id)

@@ -1,13 +1,16 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 from enum import Enum
+
 
 class StatusOptions(str, Enum):
     todo = "todo"
     doing = "doing"
     done = "done"
 
+ITEM = Dict[str,Union[int,str, StatusOptions]]
+
 class ToDoList:
-    todo: List[Dict[str, Any]] = [    
+    todo: List[Dict[str, ITEM]] = [    
         {
             'id': 1,
             'title': 'FastApi',
@@ -32,3 +35,7 @@ class ToDoList:
         item['id'] = self.id_now
         self.todo.append(item)
         return item
+
+    def get_item(self, item_id: int) -> ITEM:
+        item = filter(lambda x: x['id'] == item_id, self.todo)
+        return list(item)[0]
