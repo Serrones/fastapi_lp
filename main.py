@@ -1,22 +1,14 @@
+from data import ToDoList
+from models import ItemModel
+
 from fastapi import FastAPI
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
+
 
 app = FastAPI()
 
-todo: List[Dict[str, Any]] = [    
-    {
-        'id': 1,
-        'title': 'FastApi',
-        'description': 'Explore FastApi application',
-        'status': 'doing'
-    },
-    {
-        'id': 2,
-        'title': 'AIOHTTP',
-        'description': 'Explore Async concepts with AIOHTTP',
-        'status': 'to do'
-    }
-]
+todo_list = ToDoList()
+
 
 @app.get('/')
 def hello_world():
@@ -25,9 +17,9 @@ def hello_world():
     """
     return{'hello': 'world'}
 
-@app.get('/list')
+@app.get('/list', response_model=List[ItemModel])
 def list_todo():
     """
     View returns todo list
     """
-    return todo   
+    return todo_list.get_all()   
